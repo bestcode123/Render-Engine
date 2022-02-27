@@ -1,8 +1,16 @@
 from PIL import Image
 import numpy as np
+import random
 
-a = [[[255, 0, 0], [0, 255, 0]], [[0, 255, 0], [255, 0, 0]]]
+a = []
 
+def randout():
+    out = []
+    for i in range(10000):
+        out.append([random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)])
+    return out
+for i in range(10000):
+    print(i+1)
+    a.append(randout())
+    
 Image.fromarray(np.uint8(a)).convert('RGB').save('my.png')
-
-#PIL_image = Image.fromarray(numpy_image.astype('uint8'), 'RGB')
