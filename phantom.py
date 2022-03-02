@@ -3,13 +3,41 @@
 face  = [
     [1, 1, 0], # c1
     [3, 1, 0], # c2
-    [1, 3, 0], # c3
-    [3, 3, 0] # c4 // (NON-REGARD)
+    [2, 2, 0],
+    [3, 2, 0],
+    [1, 3, 0],
+    [2, 3, 0]
 ]
 
+phantom = []
 inface = []
 gridset = []
 
+def max(inlist):
+    max = inlist[0]
+    for i in inlist:
+        if(i > max):
+            max = i
+    return max
+
+def min(inlist):
+    min = inlist[0]
+    for i in inlist:
+        if(i < min):
+            min = 1
+    return min
+
+xmax = max([c[0] for c in face])
+ymax = max([c[1] for c in face])
+xmin = min([c[0] for c in face])
+ymin = min([c[1] for c in face])
+
+A1 = (xmin, ymin)
+B1 = (xmax, ymin)
+E1 = (xmin, ymax)
+X1 = (xmax, ymax)
+
+print(A1, B1, E1, X1)
 grid_size = (4, 4, 0)
 ugrid_size = (grid_size[0]+1,grid_size[1]+1,grid_size[2]+1)
 
@@ -19,7 +47,7 @@ for z in range(ugrid_size[2]):
             gridset.append([x, y, z])
 
 for c in gridset:
-    if(face[1-1][0] <= c[0] <= face[2-1][0] and face[1-1][1] <= c[1] <= face[3-1][1]):
+    if(A1[0] <= c[0] <= B1[0] and A1[1] <= c[1] <= E1[1]):
         inface.append(c)
 
 # inface = output
@@ -47,7 +75,7 @@ for c in gridset:
 #print(tdp2)
 
 # Step 3: Color calculation:
-
+print(tdp2)
 white = [255, 255, 255]
 black = [0, 0, 0]
 
